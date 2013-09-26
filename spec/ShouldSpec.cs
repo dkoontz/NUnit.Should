@@ -17,6 +17,18 @@ public class NUnitShouldSpec {
 		new string[] { "hi", "there" }.Should(Have.Member("hi"));
 		new string[] { "hi", "there" }.Should(Contain.Item("hi"));
 	}
+	
+	[Test]
+	public void Should_Throw() {
+		string nullString = null;
+		new TestDelegate(() => nullString.ToString()).ShouldThrow<NullReferenceException>();
+	}
+	
+	[Test]
+	public void Should_Not_Throw() {
+		string nullString = "";
+		new TestDelegate(() => nullString.ToString()).ShouldNotThrow();
+	}
 }
 
 [TestFixture]

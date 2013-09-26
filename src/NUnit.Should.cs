@@ -25,5 +25,13 @@ namespace NUnit.Framework {
 		public static void ShouldNot(this object o, Constraint constraint) {
 			Assert.That(o, new NotOperator().ApplyPrefix(constraint));
 		}
+		
+		public static void ShouldThrow<T>(this TestDelegate t) where T : Exception {
+			Assert.Throws(Is.InstanceOf<T>(), t);
+		}
+
+		public static void ShouldNotThrow(this TestDelegate t) {
+			Assert.DoesNotThrow(t);
+		}
 	}
 }
